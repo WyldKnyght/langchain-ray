@@ -108,10 +108,7 @@ ds = ds.map_batches(
 from langchain import FAISS
 from langchain.embeddings import HuggingFaceEmbeddings
 
-text_and_embeddings = []
-for output in ds.iter_rows():
-    text_and_embeddings.append(output)
-
+text_and_embeddings = list(ds.iter_rows())
 print("Creating FAISS Vector Index.")
 vector_store = FAISS.from_embeddings(
     text_and_embeddings,

@@ -26,7 +26,7 @@ class VectorSearchDeployment:
         for i in range(len(results)):
             chunk = results[i]
             source = chunk.metadata["source"]
-            retval = retval + f"From http://{source}\n\n"
+            retval = f"{retval}From http://{source}\n\n"
             retval = retval + chunk.page_content
             retval = retval + "\n====\n\n"
 

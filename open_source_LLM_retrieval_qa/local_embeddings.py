@@ -19,8 +19,7 @@ class LocalHuggingFaceEmbeddings(Embeddings):
         Returns:
             List of embeddings, one for each text.
         """
-        embeddings = self.model.encode(texts)
-        return embeddings
+        return self.model.encode(texts)
 
     def embed_query(self, text: str) -> List[float]:
         """Embed a query using a locally running HF
