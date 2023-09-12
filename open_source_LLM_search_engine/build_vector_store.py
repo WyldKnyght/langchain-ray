@@ -35,7 +35,7 @@ print(f"Time taken: {et} seconds.")
 
 # Stage two: embed the docs.
 embeddings = LocalHuggingFaceEmbeddings("multi-qa-mpnet-base-dot-v1")
-print(f"Loading chunks into vector store ...")
+print("Loading chunks into vector store ...")
 st = time.time()
 db = FAISS.from_documents(chunks, embeddings)
 db.save_local(FAISS_INDEX_PATH)

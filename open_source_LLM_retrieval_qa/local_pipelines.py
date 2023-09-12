@@ -38,14 +38,11 @@ class StableLMPipeline(HuggingFacePipeline):
         response = self.pipeline(
             prompt, temperature=0.1, max_new_tokens=256, do_sample=True
         )
-        if self.pipeline.task == "text-generation":
-            # Text generation return includes the starter text.
-            print(f"Response is: {response}")
-            text = response[0]["generated_text"][len(prompt) :]
-        else:
+        if self.pipeline.task != "text-generation":
             raise ValueError(f"Got invalid task {self.pipeline.task}. ")
-        # text = enforce_stop_tokens(text, [50278, 50279, 50277, 1, 0])
-        return text
+        # Text generation return includes the starter text.
+        print(f"Response is: {response}")
+        return response[0]["generated_text"][len(prompt) :]
 
     @classmethod
     def from_model_id(
